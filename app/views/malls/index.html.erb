@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Malls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @malls.each do |mall| %>
+      <tr>
+        <td><%= mall.name %></td>
+        <td><%= mall.city %></td>
+        <td><%= mall.lat %></td>
+        <td><%= mall.lng %></td>
+        <td><%= link_to 'Show', mall %></td>
+        <td><%= link_to 'Edit', edit_mall_path(mall) %></td>
+        <td><%= link_to 'Destroy', mall, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mall', new_mall_path %>

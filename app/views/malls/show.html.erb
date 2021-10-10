@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mall.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @mall.city %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @mall.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @mall.lng %>
+</p>
+
+<%= link_to 'Edit', edit_mall_path(@mall) %> |
+<%= link_to 'Back', malls_path %>

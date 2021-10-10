@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :malls
   resources :types
   resources :categories
   resources :brands

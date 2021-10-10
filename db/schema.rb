@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_201833) do
+ActiveRecord::Schema.define(version: 2021_10_10_202806) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2021_10_10_201833) do
     t.integer "type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "brand_id", null: false
+    t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["type_id"], name: "index_products_on_type_id"
   end
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_201833) do
   add_foreign_key "mall_products", "products"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
+  add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "types"
 end

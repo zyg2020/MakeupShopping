@@ -1,14 +1,13 @@
 class MallsController < ApplicationController
-  before_action :set_mall, only: %i[ show edit update destroy ]
+  before_action :set_mall, only: %i[show edit update destroy]
 
   # GET /malls or /malls.json
   def index
-    @malls = Mall.all
+    @malls = Mall.paginate(page: params[:page], per_page: 20)
   end
 
   # GET /malls/1 or /malls/1.json
-  def show
-  end
+  def show; end
 
   # GET /malls/new
   def new
@@ -16,8 +15,7 @@ class MallsController < ApplicationController
   end
 
   # GET /malls/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /malls or /malls.json
   def create
@@ -57,13 +55,14 @@ class MallsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mall
-      @mall = Mall.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def mall_params
-      params.require(:mall).permit(:name, :city, :lat, :lng)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mall
+    @mall = Mall.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def mall_params
+    params.require(:mall).permit(:name, :city, :lat, :lng)
+  end
 end

@@ -2,20 +2,26 @@
 
 <h1>Products</h1>
 <%= will_paginate %>
-<div class="columns is-multiline is-mobile">
+<div class="columns is-multiline is-mobile ">
     <% @products.each do |product| %>
-        <div class="column is-one-quarter ">
-          <div class="tile is-vertical is-8 is-info is-flex">
-          <article class="notification is-info">
-          <h1><%= link_to product.name, product %></h1>
+        <div class="column is-one-quarter is-centered" style="display:flex is-gapless">
+          <div class="tile is-vertical is-8 is-info is-gapless " >
+          <article class="content notification is-info is-flex is-flex-direction-column is-justify-content-center is-align-content-center is-centered">
 
-                  <%= image_tag product.image_link, class: "image is-128x128"%>
+          <h5 class="subtitle is-small"><%= link_to product.name, product %></h5>
+<div>
+<%= image_tag product.image_link, class: "image is-flex"%>
+</div>
+
 
               <p><%= truncate product.description %></p>
               <% if product.rating && product.rating > 0 %>
+              <div>
               <progress class="progress is-small" value="<%= product.rating %>" max=5>
                 <%= product.rating %>
               </progress>
+              </div>
+
               <% end %>
           </article>
 

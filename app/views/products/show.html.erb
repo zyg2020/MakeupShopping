@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<div class="columns">
+  <div class="column is-half">
+<%= image_tag @product.image_link, class: "image is-flex"%>
+</div>
+  <div class="column is-half content">
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -25,7 +30,7 @@
   <%= @product.website_link %>
 </p>
 
-<p>
+<p class="message-body">
   <strong>Description:</strong>
   <%= @product.description %>
 </p>
@@ -52,11 +57,11 @@
 
 <p>
   <strong>Malls:</strong>
-  <ol>
+  <ul>
     <% @product.malls.each do |mall| %>
     <li>Name <%= mall.name %>, city: <%= mall.city %>, lat: <%= mall.lat %>, lng: <%= mall.lng %> </li>
     <% end %>
-  </ol>
+  </ul>
 </p>
 
 <p>
@@ -66,7 +71,9 @@
     <li>Name <%= tag.name %></li>
     <% end %>
   </ol>
-</p>
+</p> </div>
+</div>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

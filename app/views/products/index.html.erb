@@ -2,42 +2,23 @@
 
 <h1>Products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Image link</th>
-      <th>Product link</th>
-      <th>Website link</th>
-      <th>Description</th>
-      <th>Rating</th>
-      <th>Category</th>
-      <th>Type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="columns is-multiline is-mobile">
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.image_link %></td>
-        <td><%= product.product_link %></td>
-        <td><%= product.website_link %></td>
-        <td><%= product.description %></td>
-        <td><%= product.rating %></td>
-        <td><%= product.category_id %></td>
-        <td><%= product.type_id %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <div class="column is-one-quarter">
+          <div class="section">
+              <h2><%= link_to product.name, product %></h2>
 
-<br>
+                  <%= image_tag product.image_link, class: "image is-128x128"%>
+
+              <p><%= truncate product.description %></p>
+              <% if product.rating && product.rating > 0 %>
+              <progress class="progress is-small" value="<%= product.rating %>" max=5>
+                <%= product.rating %>
+              </progress>
+              <% end %>
+          </div>
+        </div>
+    <% end %>
+</div>
 
 <%= link_to 'New Product', new_product_path %>

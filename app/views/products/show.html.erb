@@ -37,12 +37,35 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @product.category_id %>
+  <%= @product.category.name %>
 </p>
 
 <p>
   <strong>Type:</strong>
-  <%= @product.type_id %>
+  <%= @product.type.name %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @product.brand.name %>
+</p>
+
+<p>
+  <strong>Malls:</strong>
+  <ol>
+    <% @product.malls.each do |mall| %>
+    <li>Name <%= mall.name %>, city: <%= mall.city %>, lat: <%= mall.lat %>, lng: <%= mall.lng %> </li>
+    <% end %>
+  </ol>
+</p>
+
+<p>
+  <strong>Malls:</strong>
+  <ol>
+    <% @product.tags.each do |tag| %>
+    <li>Name <%= tag.name %></li>
+    <% end %>
+  </ol>
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |

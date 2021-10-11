@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
-
+<%= will_paginate %>
 <div class="columns is-multiline is-mobile">
     <% @products.each do |product| %>
-        <div class="column is-one-quarter">
-          <div class="section">
-              <h2><%= link_to product.name, product %></h2>
+        <div class="column is-one-quarter ">
+          <div class="tile is-vertical is-8 is-info is-flex">
+          <article class="notification is-info">
+          <h1><%= link_to product.name, product %></h1>
 
                   <%= image_tag product.image_link, class: "image is-128x128"%>
 
@@ -16,9 +17,11 @@
                 <%= product.rating %>
               </progress>
               <% end %>
+          </article>
+
           </div>
         </div>
     <% end %>
 </div>
-
+<%= will_paginate %>
 <%= link_to 'New Product', new_product_path %>

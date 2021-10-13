@@ -59,16 +59,16 @@
   <strong>Malls:</strong>
   <ul>
     <% @product.malls.each do |mall| %>
-    <li>Name <%= mall.name %>, city: <%= mall.city %>, lat: <%= mall.lat %>, lng: <%= mall.lng %> </li>
+    <li>Name: <%= mall.name %>, city: <%= mall.city %>, lat: <%= mall.lat %>, lng: <%= mall.lng %> </li>
     <% end %>
   </ul>
 </p>
 
 <p>
-  <strong>Malls:</strong>
+  <strong>Tags:</strong>
   <ol>
     <% @product.tags.each do |tag| %>
-    <li>Name <%= tag.name %></li>
+    <li><%= tag.name %></li>
     <% end %>
   </ol>
 </p> </div>

@@ -59,3 +59,5 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 ## Gemfile for Rails 3+, Sinatra, or Merb
 gem 'will_paginate', '~> 3.3.0'
+
+gem 'ransack'

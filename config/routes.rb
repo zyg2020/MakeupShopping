@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root to: "products#index"
 
   resources :colors
-  resources :products
+  resources :products do
+    collection do
+      match "search" => "products#search", via: %i[get post], as: :search
+    end
+  end
   resources :tags
   resources :malls
   resources :types

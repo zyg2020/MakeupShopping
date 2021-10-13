@@ -4,7 +4,16 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     # @products = Product.all
-    @products = Product.paginate(page: params[:page], per_page: 30)
+    # @products = Product.paginate(page: params[:page], per_page: 30)
+    @q = Product.ransack(params[:q])
+    @products = @q.result.includes(:tags, :malls).paginate(page: params[:page], per_page: 30)
+
+    @tags = Tag.all
+  end
+
+  def search
+    index
+    render :index
   end
 
   # GET /products/1 or /products/1.json

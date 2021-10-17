@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_202806) do
+ActiveRecord::Schema.define(version: 2021_10_17_151133) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 2021_10_10_202806) do
     t.string "city"
     t.decimal "lat"
     t.decimal "lng"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "permalink"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

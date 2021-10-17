@@ -20,5 +20,15 @@
   <%= @mall.lng %>
 </p>
 
-<%= link_to 'Edit', edit_mall_path(@mall) %> |
+<h3 class="title is-3"><%= pluralize @mall.products.count, "Product" %> sold in <%= @mall.name %> </h3>
+<ul>
+
+
+  <% @mall.products.each do | p| %>
+    <li> <%= link_to p.name, p %> </li>
+  <% end %>
+</ul>
+
+
+<%# <%= link_to 'Edit', edit_mall_path(@mall) %>
 <%= link_to 'Back', malls_path %>

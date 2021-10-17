@@ -7,7 +7,9 @@ class MallsController < ApplicationController
   end
 
   # GET /malls/1 or /malls/1.json
-  def show; end
+  def show
+    @mall = Mall.find(params[:id])
+  end
 
   # GET /malls/new
   def new

@@ -5,6 +5,7 @@ require "pp"
 require "csv"
 require "faker"
 
+Page.delete_all
 Color.delete_all
 ProductTag.delete_all
 MallProduct.delete_all
@@ -86,6 +87,17 @@ products.each do |p|
   end
 end
 
+Page.create(
+  title:     "About the Data",
+  content:   "The data powering this website was provided by an Makeup by Brand and Type API. Link of it: http://makeup-api.herokuapp.com/",
+  permalink: "about_the_data"
+)
+Page.create(
+  title:     "Contact Us",
+  content:   "If you like this site and want to chat about the project or the data, email me at: zhuyange2018@gmail.com",
+  permalink: "contact"
+)
+
 puts "Created #{Mall.count} Malls"
 puts "Created #{MallProduct.count} MallProducts"
 puts "Created #{Product.count} Products"
@@ -95,3 +107,4 @@ puts "Created #{Type.count} Types"
 puts "Created #{Color.count} Colors"
 puts "Created #{ProductTag.count} ProductTags"
 puts "Created #{Tag.count} Tags"
+puts "Created #{Page.count} Pages"

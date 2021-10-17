@@ -25,9 +25,9 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.save
         format.html do
-          redirect_to permalink_path(page.permalink), notice: "Page was successfully created."
+          redirect_to permalink_path(@page.permalink), notice: "Page was successfully created."
         end
-        format.json { render :show, status: :created, location: permalink_path(page.permalink) }
+        format.json { render :show, status: :created, location: permalink_path(@page.permalink) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @page.errors, status: :unprocessable_entity }
@@ -40,9 +40,9 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.update(page_params)
         format.html do
-          redirect_to permalink_path(page.permalink), notice: "Page was successfully updated."
+          redirect_to permalink_path(@page.permalink), notice: "Page was successfully updated."
         end
-        format.json { render :show, status: :ok, location: permalink_path(page.permalink) }
+        format.json { render :show, status: :ok, location: permalink_path(@page.permalink) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @page.errors, status: :unprocessable_entity }

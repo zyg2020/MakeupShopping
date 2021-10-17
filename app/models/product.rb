@@ -14,6 +14,9 @@ class Product < ApplicationRecord
   belongs_to :type
   belongs_to :brand
 
+  validates :name, presence: true
+  validates :rating, numericality: true
+
   def self.remote_file_exists?(url)
     url = URI.parse(url)
     Net::HTTP.start(url.host, url.port) do |http|

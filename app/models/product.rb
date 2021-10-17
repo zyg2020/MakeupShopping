@@ -15,7 +15,6 @@ class Product < ApplicationRecord
   belongs_to :brand
 
   validates :name, presence: true
-  validates :rating, numericality: true
 
   def self.remote_file_exists?(url)
     url = URI.parse(url)

@@ -5,6 +5,16 @@ require "pp"
 require "csv"
 require "faker"
 
+def print_errors(errors, errors_belongs_to)
+  puts "errors_belongs_to #{errors_belongs_to}==========================================="
+  errors.messages.each do |column, errors_of_the_column|
+    errors_of_the_column.each do |error|
+      puts "The #{column} property #{error}."
+    end
+  end
+  puts "errors_belongs_to #{errors_belongs_to}==========================================="
+end
+
 Page.delete_all
 Color.delete_all
 ProductTag.delete_all
@@ -78,11 +88,15 @@ products.each do |p|
       end
 
     else
-      puts "Invalid product #{p['name']}, id: #{p['id']}"
+      print_errors(product.errors)
+      puts "Invalid product #{p['name']}, brand: #{p['brand']} id: #{p['id']}"
     end
   else
     puts "Invalid brand or Invalid category or Invalid type for #{p['name']}"
-    puts "brand -> #{p['brand']}, category -> #{p['category']}, type -> #{product_type}"
+    print_errors(brand.errors, "Brand")
+    print_errors(category.errors, "category")
+    print_errors(type.errors, "type")
+    puts "brand -> #{p['brand']}, category -> #{p['category']}, type -> #{p['product_type']}"
     puts "===================================================================="
   end
 end

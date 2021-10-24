@@ -12,8 +12,21 @@ class ProductsController < ApplicationController
   end
 
   def search
-    index
-    render :index
+    # index
+    # render :index
+
+    if params[:tag_name] && params[:tag_name] != "" && params[:mall_name] && params[:mall_name] != ""
+      products_no_filtered = Product.joins(:tags, :malls).where(tags:  { name: [params[:tag_name]] },
+                                                                malls: { name: [params[:mall_name]] })
+    elsif params[:tag_name] && params[:tag_name] != ""
+      products_no_filtered = Product.joins(:tags).where(tags: { name: [params[:tag_name]] })
+    elsif params[:mall_name] && params[:mall_name] != ""
+      products_no_filtered = Product.joins(:malls).where(malls: { name: [params[:mall_name]] })
+    else
+      products_no_filtered = Product.all
+    end
+    puts products_no_filtered
+    @products = products_no_filtered
   end
 
   # GET /products/1 or /products/1.json

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>MakeupShopping</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,60 +14,70 @@
   </head>
 
   <body>
-  <div><nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://www.purpicks.com/wp-content/uploads/2018/06/Rejuva-Minerals-Multi-Purpose-Powder-Blush-_-Eye-1.jpg" width="50" height="50">
-    </a>
+      <div>
+        <nav class="navbar" role="navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                    <img src="https://www.purpicks.com/wp-content/uploads/2018/06/Rejuva-Minerals-Multi-Purpose-Powder-Blush-_-Eye-1.jpg" alt="logo" width="50" height="50" />
+                </a>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <%= link_to "Products", products_path, class:"navbar-item " %>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <%= link_to "Products", products_path, class:"navbar-item " %>
+                        <%= link_to "Malls", malls_path, class:"navbar-item " %>
+                            <%= link_to "Categories", categories_path, class:"navbar-item " %>
+                                <%= link_to "Types", types_path, class:"navbar-item " %>
+                                    <%= link_to "Tags", tags_path, class:"navbar-item " %>
 
-      <%= link_to "Malls", malls_path, class:"navbar-item " %>
+                                        <div class="navbar-item has-dropdown is-hoverable">
+                                            <a class="navbar-link"> More </a>
 
-      <%= link_to "Categories", categories_path, class:"navbar-item " %>
+                                            <div class="navbar-dropdown">
+                                                <% cms_pages.each do |page| %>
+                                                    <%= link_to page.title, permalink_path(page.permalink), class:"navbar-item" %>
+                                                        <% end %>
+                                            </div>
+                                        </div>
+                </div>
 
-      <%= link_to "Types", types_path, class:"navbar-item " %>
 
-      <%= link_to "Tags", tags_path, class:"navbar-item " %>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <strong>1111111111</strong>
+                            </a>
+                            <a class="button is-light"> 22222 </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+<div class="mg-small notification is-primary">
+  <%= form_with(url: search_products_path, method: :get, local: true) do |form| %>
+  <%= form.label :name, "Search for:" %>
+  <%=  form.text_field(:name, class: "input", placeholder: "Search For Products")  %>
+    <div>
+    <%= form.label :tag_name%>
+        <%= form.collection_select(:tag_name, return_tags , :name, :name, :include_blank => "All", class: "control" )%>
+        <%= form.label :mall_name%>
+    <%= form.collection_select( :mall_name, return_malls , :name, :name, :include_blank => "All", class: "control" )%>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <% cms_pages.each do |page| %>
-              <%= link_to page.title, permalink_path(page.permalink), class:"navbar-item" %>
-          <% end %>
-        </div>
+      <div class="control">
+        <%= form.submit("Search", class: "button is-primary") %>
       </div>
     </div>
-
-    <%# <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div> %>
-
-    </div>
-  </div>
-</nav>
+  <% end %>
 </div>
+
   <section class="section">
 
     <div>
@@ -99,9 +109,10 @@
   }
 });
 </script>
-
-        <% cms_pages.each do |page| %>
-          <li><%= link_to page.title, permalink_path(page.permalink) %></li>
-       <% end %>
+      <ul class="mt-5">
+          <% cms_pages.each do |page| %>
+            <li><%= link_to page.title, permalink_path(page.permalink) %></li>
+        <% end %>
+      </ul>
   </body>
 </html>

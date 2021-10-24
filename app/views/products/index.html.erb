@@ -1,63 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
-<div class="mg-small notification is-primary">
-  <%= search_form_for @q, url: search_products_path,
-                        html: { method: :post }  do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name_cont, class: "control"%>
-    <div>
-    <%# <%= f.label :tag %>
-    <%# <%= f.select(:tag_eq, options_from_collection_for_select(@tags, 'name', 'name'), { include_blank: true }, {class: "" }) %></div>
-    <%= f.label :tags_name_cont %>
-    <%= f.search_field :tags_name_cont, class: "control" %>
-
-    <%= f.label :malls_name_cont %>
-    <%= f.search_field :tags_name_cont, class: "control" %>
-    <div class="mg-medium">
-    <div>
-        <%= link_to "Clear", request.path, class: "button  is-primary is-small" %>
-    </div>
-
-     <%= f.submit class: 'button is-white is-small mgt-small' %>
-
-    </div>
-  <% end %>
-</div>
 <%= will_paginate %>
 <div class="columns is-multiline is-mobile ">
-    <% @products.each do |product| %>
-        <div class="column is-one-quarter is-centered" style="display:flex is-gapless">
-          <div class="tile is-vertical  is-8 is-info is-gapless " >
-          <article class="content notification is-info is-flex is-flex-direction-column is-justify-content-center is-align-content-center is-centered">
+<%= render partial: @products %>
 
-            <div style="height:65px">
-              <h5 class="subtitle is-small is-128x128"><%= link_to product.name, product %></h5>
-            </div>
-
-            <div>
-            <%= image_tag product.image_link, class: "image is-128x128"%>
-            </div>
-
-
-            <div style="height:50px">
-                <p><%= truncate product.description %></p>
-                <% if product.rating && product.rating > 0 %>
-                <div>
-                <strong>Rating:</strong>
-                  <progress class="progress is-small" value="<%= product.rating %>" max=5>
-                    <%= product.rating %>
-                  </progress>
-                </div>
-            </div>
-
-
-              <% end %>
-          </article>
-
-          </div>
-        </div>
-    <% end %>
 </div>
 <%= will_paginate %>
 <%= link_to 'New Product', new_product_path %>

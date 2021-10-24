@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :colors
   resources :products do
     collection do
-      match "search" => "products#search", via: %i[get post], as: :search
+      # match "search" => "products#search", via: %i[get post], as: :search
+      get "search"
     end
   end
   resources :tags
